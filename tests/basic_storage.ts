@@ -18,5 +18,22 @@ describe("basic_storage", () => {
     console.log("My Storage PDA", myStoragePDA.toBase58());
     const tx = await program.methods.initialize().accountsPartial({myStorage: myStoragePDA}).signers([]).rpc();
     console.log("Your transaction signature", tx);
+
+    const tx2 = await program.methods.set(new anchor.BN(42)).accountsPartial({myStorage: myStoragePDA}).signers([]).rpc();
+    console.log("Your transaction signature", tx2);
+
+    const myStorageAccount = await program.account.myStorage.fetch(myStoragePDA);
+    console.log("My Storage Account", myStorageAccount);
+
+
+    const tx3 = await program.methods.printX().accountsPartial({myStorage: myStoragePDA}).signers([]).rpc();
+    console.log("Your transaction signature", tx3);
+
+
+    const tx4 = await program.methods.incrementX().accountsPartial({myStorage: myStoragePDA}).signers([]).rpc();
+    console.log("Your transaction signature", tx4);
+
+    const tx5 = await program.methods.printX().accountsPartial({myStorage: myStoragePDA}).signers([]).rpc();
+    console.log("Your transaction signature", tx5);
   });
 });
