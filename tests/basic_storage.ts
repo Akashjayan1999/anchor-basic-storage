@@ -38,5 +38,9 @@ describe("basic_storage", () => {
 
     let myStorageStruct = await program.account.myStorage.fetch(myStoragePDA);
     console.log("The value of x is:",myStorageStruct.x.toString());
+
+    const connection = program.provider.connection;
+    const accountInfo = await connection.getAccountInfo(myStoragePDA);
+   console.log("Account Info:", JSON.stringify(accountInfo, null, 2));
   });
 });
