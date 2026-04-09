@@ -35,5 +35,8 @@ describe("basic_storage", () => {
 
     const tx5 = await program.methods.printX().accountsPartial({myStorage: myStoragePDA}).signers([]).rpc();
     console.log("Your transaction signature", tx5);
+
+    let myStorageStruct = await program.account.myStorage.fetch(myStoragePDA);
+    console.log("The value of x is:",myStorageStruct.x.toString());
   });
 });
